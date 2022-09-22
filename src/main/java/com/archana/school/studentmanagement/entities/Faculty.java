@@ -24,7 +24,7 @@ public class Faculty {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    @DateTimeFormat(pattern = "MM-DD-YYYY")
     private Date dob;
     @Column(name = "gender")
     private String gender;
@@ -43,7 +43,7 @@ public class Faculty {
     private int role;
     @Column(name = "email" , unique = true)
     private String email;
-//, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH
+// CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH
     @OneToMany(mappedBy = "faculty", fetch= FetchType.LAZY , cascade = {CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Student> studentSet;

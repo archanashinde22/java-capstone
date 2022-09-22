@@ -31,7 +31,7 @@ public interface FacultyService {
 
     //Find Faculty by FirstName
     @Transactional
-    Optional<FacultyDto> getFacultyByFirstName(String firstName);
+    List<FacultyDto> getFacultyByFirstName(String firstName);
 
     //Find Faculty By email
     @Transactional

@@ -25,7 +25,7 @@ public class Student {
     @Column(name = "last_name" , nullable = false)
     private String lastName;
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    @DateTimeFormat(pattern = "MM-DD-YYYY")
     private Date dob;
     @Column(name = "gender")
     private String gender;

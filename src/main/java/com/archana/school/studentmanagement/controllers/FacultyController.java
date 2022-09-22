@@ -50,7 +50,7 @@ public class FacultyController {
     }
     @GetMapping("/{firstName}")
 //    @GetMapping("/firstName/{firstName}")
-    public Optional<FacultyDto> getFacultyByFirstName(@PathVariable String firstName){
+    public List<FacultyDto> getFacultyByFirstName(@PathVariable String firstName){
         return facultyService.getFacultyByFirstName(firstName);
     }
 

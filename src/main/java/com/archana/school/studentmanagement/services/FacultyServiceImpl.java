@@ -1,6 +1,7 @@
 package com.archana.school.studentmanagement.services;
 
 import com.archana.school.studentmanagement.dtos.FacultyDto;
+import com.archana.school.studentmanagement.dtos.StudentDto;
 import com.archana.school.studentmanagement.entities.Faculty;
 import com.archana.school.studentmanagement.exception.EntityNotFoundException;
 import com.archana.school.studentmanagement.repositories.FacultyRepository;
@@ -26,16 +27,21 @@ public class FacultyServiceImpl implements FacultyService {
     public List<String> addFaculty(FacultyDto facultyDto){
          Optional<Faculty> savedFacultyByEmail = facultyRepository.findByEmailIgnoreCase(facultyDto.getEmail());
          Optional<Faculty> savedFacultyByUsername = facultyRepository.findByUsername(facultyDto.getUsername());
+         List<String> response = new ArrayList<>();
          if(savedFacultyByEmail.isPresent()){
-             throw new EntityNotFoundException("Faculty already exists with given email: "+ facultyDto.getEmail());
+             response.add("User already exists with given email.");
+             return  response;
+//             throw new EntityNotFoundException("Faculty already exists with given email: "+ facultyDto.getEmail());
          } else if(savedFacultyByUsername.isPresent()) {
-             throw new EntityNotFoundException("Faculty already exists with given username: "+ facultyDto.getUsername());
+//             throw new EntityNotFoundException("Faculty already exists with given username: "+ facultyDto.getUsername());
+             response.add("User already exists with given username.");
+             return  response;
          }
-        List<String> response = new ArrayList<>();
+
         Faculty faculty = new Faculty(facultyDto);
         facultyRepository.saveAndFlush(faculty);
         response.add("User Added Successfully");
-//        response.add("http://localhost:8080/login.html");
+        response.add("http://localhost:8080/home.html");
         return  response;
     }
 
@@ -59,8 +65,15 @@ public class FacultyServiceImpl implements FacultyService {
         if(facultyOptional.isPresent()){
             if(passwordEncoder.matches(facultyDto.getPassword(),facultyOptional.get().getPassword())){
                 System.out.println("password and username correct");
-                response.add("http://localhost:8080/home.html");
-                response.add(String.valueOf(facultyOptional.get().getId()));
+                if(facultyOptional.get().getRole() == 1) {
+                    response.add("logged in successfully");
+                    response.add("http://localhost:8080/adminhome.html");
+                    response.add(String.valueOf(facultyOptional.get().getId()));
+                } else {
+                    response.add("logged in successfully");
+                    response.add("http://localhost:8080/facultyhome.html");
+                    response.add(String.valueOf(facultyOptional.get().getId()));
+                }
             } else {
                 response.add("Username or password incorrect");
             }
@@ -100,25 +113,30 @@ public class FacultyServiceImpl implements FacultyService {
         });
     }
 
-  // delete Faculty by faculty Id
+    // delete Faculty by faculty Id
 
     @Override
     @Transactional
     public void deleteFacultyById(int facultyId){
         Optional<Faculty> facultyOptional = facultyRepository.findById(facultyId);
-        facultyOptional.ifPresent(faculty-> facultyRepository.delete(faculty));
-    }
 
+        facultyOptional.ifPresent(faculty-> {
+            if(faculty.getStudentSet().isEmpty()){
+            facultyRepository.delete(faculty);
+        } else{
+                faculty.getStudentSet().stream().forEach(student -> student.setFaculty(null));
+        }
+  } );}
 
     //Find Faculty by FirstName
     @Override
     @Transactional
-    public Optional<FacultyDto> getFacultyByFirstName(String firstName){
-        Optional<Faculty> facultyOptional = facultyRepository.findByFirstNameIgnoreCase(firstName);
-        if(facultyOptional.isPresent()){
-            return Optional.of(new FacultyDto(facultyOptional.get()));
+    public List<FacultyDto> getFacultyByFirstName(String firstName){
+        List<Faculty> facultyList = facultyRepository.findByFirstNameIgnoreCase(firstName);
+        if(!facultyList.isEmpty()){
+            return facultyList.stream().map(faculty -> new FacultyDto(faculty)).collect(Collectors.toList());
         }
-        return  Optional.empty();
+        return Collections.emptyList();
     }
 
     //Find Faculty By email
