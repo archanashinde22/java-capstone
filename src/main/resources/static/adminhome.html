@@ -9,129 +9,39 @@
     <title>School Management System</title>
 </head>
 <body>
-<header>
-    <h2>School Management</h2>
-    <p id="welcome-message">Ms. Zezula</p>
-    <a href="./home.html" onclick="handleLogout()">Logout</a>
-
-</header>
-
-
-<div  >
-    <div class="btn-group">
-        <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Student
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item change-btn" href="#" id="add_student">Add Student</a>
-            <a class="dropdown-item" href="#" id ="student_list">Student List </a>
+    <header>
+        <h2>School Management</h2>
+        <p id="welcome-message"></p>
+        <a href="./home.html" onclick="handleLogout()">Logout</a>
+    </header>
+    <div>
+        <div class="btn-group">
+            <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Student
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item change-btn" href="#" id="add_student">Add Student</a>
+                <a class="dropdown-item change-btn"  href="#" id ="student_list">Student List </a>
+            </div>
         </div>
-
-    </div>
-    <div class="btn-group">
-        <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Faculty
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item change-btn" href="#" id="add_faculty">Add Faculty</a>
-            <a class="dropdown-item" href="#" id="faculty_list">Faculty List </a>
-
+        <div class="btn-group">
+            <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Faculty
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item change-btn" href="#" id="add_faculty">Add Faculty</a>
+                <a class="dropdown-item change-btn" href="#" id="faculty_list">Faculty List </a>
+            </div>
         </div>
     </div>
-</div>
+    <div class="form-container hide" id="form-container" >
+        <h1 id="form-title"> </h1>
+        <form id="form" >
+            <div class="form-group" id="id-reg">
+                <label for="id">Id</label>
+                <input type="text" id="id" placeholder="Id" required>
 
-<div id="data-container" class="hide">
-    <h2 id="add-title"> </h2>
-    <table class="table" id="data_table">
-        <thead class="thead-dark" id="table-header">
-<!--        <tr>-->
-<!--            <th scope="col">ID</th>-->
-<!--            <th scope="col">First Name</th>-->
-<!--            <th scope="col">Last Name</th>-->
-<!--            <th scope="col">Gender</th>-->
-<!--            <th scope="col">Birthdate</th>-->
-<!--            <th scope="col">Email</th>-->
-<!--            <th scope="col">Phone Number</th>-->
-<!--            <th scope="col">Grade</th>-->
-<!--&lt;!&ndash;            <th scope="col">Faculty Id</th>&ndash;&gt;-->
-<!--            <th scope="col">Address</th>-->
-<!--            <th scope="col">Action</th>-->
-
-
-<!--        </tr>-->
-        </thead>
-        <tbody id="table-body">
-<!--        <tr>-->
-<!--            <td>1</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Otto</td>-->
-<!--            <td>@mdo</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Edit / Delete </td>-->
-
-<!--        </tr>-->
-
-        </tbody>
-    </table>
-
-</div>
-
-<!--<div id="faculty-data" class= "">-->
-<!--    <table class="table">-->
-<!--        <thead class="thead-dark">-->
-<!--        <tr>-->
-<!--            <th scope="col">ID</th>-->
-<!--            <th scope="col">First Name</th>-->
-<!--            <th scope="col">Last Name</th>-->
-<!--            <th scope="col">Gender</th>-->
-<!--            <th scope="col">Birthdate</th>-->
-<!--            <th scope="col">Email</th>-->
-<!--            <th scope="col">Phone Number</th>-->
-<!--            <th scope="col">Grade</th>-->
-<!--            <th scope="col">Username</th>-->
-<!--            <th scope="col">Role</th>-->
-<!--            <th scope="col">Address</th>-->
-<!--            <th scope="col">Action</th>-->
-
-
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr>-->
-<!--            <td>1</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Otto</td>-->
-<!--            <td>@mdo</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Mark</td>-->
-<!--            <td>Edit / Delete </td>-->
-
-<!--        </tr>-->
-
-<!--        </tbody>-->
-<!--    </table>-->
-    <div class="add-edit-container" >
-
-        <h1 id="add-form-title"> </h1>
-        <form id="form">
-
-<!--            <div class="">-->
-<!--                <label>Gender</label>-->
-<!--                <input type="radio" id="male"  name="gender" value ="Male" checked >-->
-<!--                <label for="male" >Male</label>-->
-<!--                <input type="radio" id="female" name="gender" value ="Male">-->
-<!--                <label for="female"  > Female</label>-->
-<!--            </div>-->
+            </div>
 
             <div class="form-group">
                 <label for="firstname">First Name</label>
@@ -143,11 +53,11 @@
                 <input type="text" id="lastname" placeholder="Lastname" required>
 
             </div>
-            <div class="">
+            <div class="form-group">
                 <label for="dateOfBirth" >Date Of Birth (MM-DD-YYYY)</label>
                 <input type="date" id="dateOfBirth" required>
             </div>
-            <div class="">
+            <div class="form-group">
                 <label>Gender</label>
                 <input type="radio" id="male"  name="gender" value ="Male" checked >
                 <label for="male" >Male</label>
@@ -159,10 +69,10 @@
                 <input type="text" id="username" placeholder="Username" required>
 
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group" id="password-reg">
                 <label for="register-password">Password</label>
                 <input type="password" id="register-password" placeholder="Password" required>
-            </div> -->
+            </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
@@ -173,12 +83,12 @@
                 <label for="grade">Grade</label>
                 <input type="text" id="grade" placeholder="Grade" required>
             </div>
-            <div class="form-group">
-            <label>Role</label>
-            <input type="radio" id="faculty" name="role" value="2" checked>
-            <label for="faculty" > Faculty</label>
-            <input type="radio" id="admin" name="role" value="1">
-            <label for="admin" > Admin</label>
+            <div class="form-group" id ="role-reg">
+                <label>Role</label>
+                <input type="radio" id="faculty" name="role" value="2" checked>
+                <label for="faculty" > Faculty</label>
+                <input type="radio" id="admin" name="role" value="1">
+                <label for="admin" > Admin</label>
             </div>
 
             <div class="form-group">
@@ -197,13 +107,138 @@
             </div>
             <div >
                 <button id="submit-button" type="submit" >Save</button>
+                <!--                <button id="cancel-button" type="submit" >Save</button>-->
                 <p class="message" id="message"></p>
             </div>
         </form>
 
     </div>
 
-</div>
+    </div>
+
+
+    <div id="data-container" class="hide">
+        <form id="search-form">
+            <input type="text" id="firstname-search" placeholder="Search by Firstname">
+            <input type="text" id="email-search" placeholder="Search by email" >
+            <button id="search-button" type="submit" >Search</button>
+        </form>
+        <h2 id="add-title"> </h2>
+        <table class="table" id="data_table">
+            <thead class="thead-dark" id="table-header">
+                <!--        <tr>-->
+                <!--            <th scope="col">ID</th>-->
+                <!--            <th scope="col">First Name</th>-->
+                <!--            <th scope="col">Last Name</th>-->
+                <!--            <th scope="col">Gender</th>-->
+                <!--            <th scope="col">Birthdate</th>-->
+                <!--            <th scope="col">Email</th>-->
+                <!--            <th scope="col">Phone Number</th>-->
+                <!--            <th scope="col">Grade</th>-->
+                <!--&lt;!&ndash;            <th scope="col">Faculty Id</th>&ndash;&gt;-->
+                <!--            <th scope="col">Address</th>-->
+                <!--            <th scope="col">Action</th>-->
+                <!--        </tr>-->
+            </thead>
+            <tbody id="table-body">
+                <!--        <tr>-->
+                <!--            <td>1</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Otto</td>-->
+                <!--            <td>@mdo</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Mark</td>-->
+                <!--            <td>Edit / Delete </td>-->
+                <!--        </tr>-->
+            </tbody>
+        </table>
+    </div>
+<!--    <div class="form-container hide" id="form-container" >-->
+
+<!--        <h1 id="form-title"> </h1>-->
+<!--        <form id="form" >-->
+<!--            <div class="form-group" id="id-reg">-->
+<!--                <label for="id">Id</label>-->
+<!--                <input type="text" id="id" placeholder="Id" required>-->
+
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="firstname">First Name</label>-->
+<!--                <input type="text" id="firstname" placeholder="Firstname" required>-->
+
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="lastname">Last Name</label>-->
+<!--                <input type="text" id="lastname" placeholder="Lastname" required>-->
+
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="dateOfBirth" >Date Of Birth (MM-DD-YYYY)</label>-->
+<!--                <input type="date" id="dateOfBirth" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Gender</label>-->
+<!--                <input type="radio" id="male"  name="gender" value ="Male" checked >-->
+<!--                <label for="male" >Male</label>-->
+<!--                <input type="radio" id="female" name="gender" value ="Male">-->
+<!--                <label for="female"  > Female</label>-->
+<!--            </div>-->
+<!--            <div class="form-group" id="username-reg">-->
+<!--                <label for="username" >Username</label>-->
+<!--                <input type="text" id="username" placeholder="Username" required>-->
+
+<!--            </div>-->
+<!--             <div class="form-group" id="password-reg">-->
+<!--                <label for="register-password">Password</label>-->
+<!--                <input type="password" id="register-password" placeholder="Password" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="email">Email</label>-->
+<!--                <input type="text" id="email" placeholder="Email" required>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="grade">Grade</label>-->
+<!--                <input type="text" id="grade" placeholder="Grade" required>-->
+<!--            </div>-->
+<!--            <div class="form-group" id ="role-reg">-->
+<!--            <label>Role</label>-->
+<!--            <input type="radio" id="faculty" name="role" value="2" checked>-->
+<!--            <label for="faculty" > Faculty</label>-->
+<!--            <input type="radio" id="admin" name="role" value="1">-->
+<!--            <label for="admin" > Admin</label>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="phone">Phone Number</label>-->
+<!--                <input type="text"  id="phone" placeholder="Phone Number" required>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="address">Address</label>-->
+
+<!--                <textarea-->
+<!--                        id="address"-->
+<!--                        placeholder="Address"-->
+<!--                        rows="2"-->
+<!--                ></textarea>-->
+
+<!--            </div>-->
+<!--            <div >-->
+<!--                <button id="submit-button" type="submit" >Save</button>-->
+<!--&lt;!&ndash;                <button id="cancel-button" type="submit" >Save</button>&ndash;&gt;-->
+<!--                <p class="message" id="message"></p>-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--    </div>-->
+
+<!--</div>-->
 <script src="./javascript/adminhome.js" type="application/javascript"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
