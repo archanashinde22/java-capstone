@@ -53,5 +53,9 @@ public class StudentDto implements Serializable {
         if(student.getAddress() != null) {
             this.address = student.getAddress();
         }
+        //        newly added
+        if(student.getFaculty() !=null){
+            this.facultyDto =  new FacultyDto(student.getFaculty());
+        }
     }
 }

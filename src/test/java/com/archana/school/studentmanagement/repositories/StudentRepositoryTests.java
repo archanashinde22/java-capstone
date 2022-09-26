@@ -181,4 +181,15 @@ public class StudentRepositoryTests {
         assertThat(student).isEmpty();
     }
 
+    @Test
+    public void givenFacultyObject_whenFindByFirstName_thenReturnEmplyeeObject() throws ParseException {
+        //given - precondition - setup
+        List<Faculty> facultydb = facultyRepository.findByFirstNameIgnoreCase("admin");
+        facultydb.get(0).getFirstName();
+
+        //then  - verify the Output
+
+        assertThat(facultydb.size()).isEqualTo(2);
+        assertThat(facultydb.get(0).getFirstName()).isEqualTo("Admin");
+    }
 }

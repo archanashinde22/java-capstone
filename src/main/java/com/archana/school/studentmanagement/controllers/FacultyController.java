@@ -48,10 +48,19 @@ public class FacultyController {
         return facultyService.getFacultyByEmail(email);
 
     }
-    @GetMapping("/{firstName}")
-//    @GetMapping("/firstName/{firstName}")
+//    @GetMapping("/{firstName}")
+    @GetMapping("/firstname/{firstName}")
     public List<FacultyDto> getFacultyByFirstName(@PathVariable String firstName){
         return facultyService.getFacultyByFirstName(firstName);
+    }
+
+    @GetMapping("/grade/{grade}")
+    public List<FacultyDto> getFacultyByGrade(@PathVariable String grade){
+        return facultyService.getFacultyByGrade(grade);
+    }
+    @GetMapping("/{facultyId}")
+    public Optional<FacultyDto> getFacultyByFacultyId(@PathVariable int facultyId){
+        return facultyService.getFacultyById(facultyId);
     }
 
     @PutMapping

@@ -36,4 +36,10 @@ public interface FacultyService {
     //Find Faculty By email
     @Transactional
     Optional<FacultyDto> getFacultyByEmail(String email);
+
+    @Transactional
+    List<FacultyDto> getFacultyByGrade(String grade);
+
+    @Transactional
+    Optional<FacultyDto> getFacultyById(int facultyId);
 }

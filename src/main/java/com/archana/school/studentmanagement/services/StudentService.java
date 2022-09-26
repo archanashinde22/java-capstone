@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface StudentService {
     // add student  by Faculty ID
     @Transactional
-    void addStudent(StudentDto studentDto, int facultyId);
+    List<String> addStudent(StudentDto studentDto, int facultyId);
 
     // findAll students
 //    @Transactional
@@ -17,6 +17,9 @@ public interface StudentService {
 
     @Transactional
     List<StudentDto> getStudentByGrade(String grade);
+
+    @Transactional
+    void assignFacultyToStudentByStudentId(int studentId, int facultyId);
 
     @Transactional
     List<StudentDto> getAllStudentByFacultyId(int facultyId);

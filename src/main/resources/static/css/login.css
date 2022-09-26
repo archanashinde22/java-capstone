@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+    width= 100%
+  height: 5%;
+  overflow: hidden;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  background-color:#ECAF82;
+}
+h2 {
+  display: block;
+  text-align: center;
+}
+.nav {
+  /* width: 50%; */
+  display: flex;
+  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.nav a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.login-container{
+   padding:1rem;
+  display: flex;
+  justify-content: center;
+  width:100%
+
+}
+.login{
+  padding : 2 rem;
+   border:1px solid gray;
+}
+
+label{
+padding:1rem;
+
+}
+

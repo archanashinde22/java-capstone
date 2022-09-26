@@ -24,7 +24,7 @@ public class Faculty {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "MM-DD-YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-DD")
     private Date dob;
     @Column(name = "gender")
     private String gender;
@@ -47,6 +47,7 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty", fetch= FetchType.LAZY , cascade = {CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Student> studentSet;
+
 
     public int getId() {
         return id;

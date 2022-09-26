@@ -15,4 +15,5 @@ public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
     List<Faculty> findByFirstNameIgnoreCase(String firstName);
     Optional<Faculty> findByEmailIgnoreCase(String email);
 
+    List<Faculty> findByGradeIgnoreCase(String grade);
 }

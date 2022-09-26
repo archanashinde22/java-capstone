@@ -1,6 +1,7 @@
 package com.archana.school.studentmanagement.entities;
 import com.archana.school.studentmanagement.dtos.StudentDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Student {
     @Column(name = "last_name" , nullable = false)
     private String lastName;
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "MM-DD-YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-DD")
     private Date dob;
     @Column(name = "gender")
     private String gender;
@@ -149,6 +150,10 @@ public class Student {
         }
         if(studentDto.getAddress() != null) {
             this.address = studentDto.getAddress();
+        }
+//        newly added
+        if(studentDto.getFacultyDto() !=null) {
+            this.faculty = new Faculty(studentDto.getFacultyDto());
         }
     }
 

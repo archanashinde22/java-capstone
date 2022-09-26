@@ -1,9 +1,7 @@
 package com.archana.school.studentmanagement.services;
 
 import com.archana.school.studentmanagement.dtos.FacultyDto;
-import com.archana.school.studentmanagement.dtos.StudentDto;
 import com.archana.school.studentmanagement.entities.Faculty;
-import com.archana.school.studentmanagement.exception.EntityNotFoundException;
 import com.archana.school.studentmanagement.repositories.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,6 +71,7 @@ public class FacultyServiceImpl implements FacultyService {
                     response.add("logged in successfully");
                     response.add("http://localhost:8080/facultyhome.html");
                     response.add(String.valueOf(facultyOptional.get().getId()));
+                    response.add(facultyOptional.get().getFirstName());
                 }
             } else {
                 response.add("Username or password incorrect");
@@ -134,6 +133,7 @@ public class FacultyServiceImpl implements FacultyService {
     public List<FacultyDto> getFacultyByFirstName(String firstName){
         List<Faculty> facultyList = facultyRepository.findByFirstNameIgnoreCase(firstName);
         if(!facultyList.isEmpty()){
+            System.out.println("firstName " + firstName);
             return facultyList.stream().map(faculty -> new FacultyDto(faculty)).collect(Collectors.toList());
         }
         return Collections.emptyList();
@@ -144,6 +144,27 @@ public class FacultyServiceImpl implements FacultyService {
     @Transactional
     public Optional<FacultyDto> getFacultyByEmail(String email){
         Optional<Faculty> facultyOptional = facultyRepository.findByEmailIgnoreCase(email);
+        if(facultyOptional.isPresent()){
+            return Optional.of(new FacultyDto(facultyOptional.get()));
+        }
+        return  Optional.empty();
+    }
+
+
+    @Override
+    @Transactional
+    public List<FacultyDto> getFacultyByGrade(String grade){
+        List<Faculty> facultyList = facultyRepository.findByGradeIgnoreCase(grade);
+        if(!facultyList.isEmpty()){
+            return facultyList.stream().map(faculty -> new FacultyDto(faculty)).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    @Override
+    @Transactional
+    public Optional<FacultyDto> getFacultyById(int facultyId){
+        Optional<Faculty> facultyOptional = facultyRepository.findById(facultyId);
         if(facultyOptional.isPresent()){
             return Optional.of(new FacultyDto(facultyOptional.get()));
         }
