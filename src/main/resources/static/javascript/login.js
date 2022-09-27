@@ -31,7 +31,6 @@ const handleLogin = async (evt) =>{
                               alert(responseArr[0]);
           } else{
                           document.cookie = `userId=${responseArr[2]}`
-                          document.cookie = `userFirstName=${responseArr[3]}`
                           window.location.replace(responseArr[1])
           }
         }

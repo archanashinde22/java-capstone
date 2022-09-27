@@ -30,6 +30,7 @@
     </div>
 
 </header>
+<div class="main-container">
 <div class="form-container hide" id="form-container" >
     <h2 id="form-title"> </h2>
     <form id="form" >
@@ -47,7 +48,7 @@
         </div>
         <div class="form-group">
             <label for="dateOfBirth" >Date Of Birth (YYYY-MM-DD) </label>
-            <input type="date" id="dateOfBirth"  >
+            <input type="date" id="dateOfBirth" required >
         </div>
         <div class="form-group">
             <label>Gender</label>
@@ -56,32 +57,19 @@
             <input type="radio" id="female" name="gender" value ="Female">
             <label for="female"  > Female</label>
         </div>
-<!--        <div class="form-group" id="username-reg">-->
-<!--            <label for="username" >Username</label>-->
-<!--            <input type="text" id="username" placeholder="Username" >-->
-<!--        </div>-->
-<!--        <div class="form-group" id="password-reg">-->
-<!--            <label for="password">Password</label>-->
-<!--            <input type="password" id="password" placeholder="Password" >-->
-<!--        </div>-->
+
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Email" >
+            <input type="text" id="email" placeholder="Email" required>
         </div>
         <div class="form-group">
             <label for="grade">Grade</label>
-            <input type="text" id="grade" placeholder="Grade" >
+            <input type="text" id="grade" placeholder="Grade" required>
         </div>
-<!--        <div class="form-group" id ="role-reg">-->
-<!--            <label>Role</label>-->
-<!--            <input type="radio" id="faculty" name="role" value="2" checked>-->
-<!--            <label for="faculty" > Faculty</label>-->
-<!--            <input type="radio" id="admin" name="role" value="1">-->
-<!--            <label for="admin" > Admin</label>-->
-<!--        </div>-->
+
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="text"  id="phone" placeholder="Phone Number" >
+            <input type="text"  id="phone" placeholder="Phone Number"required >
         </div>
         <div class="form-group">
             <label for="address">Address</label>
@@ -100,29 +88,28 @@
 </div>
 
 
-<div id="data-container" class="hide">
+<div id="data-container" >
     <h2 id="add-title"> </h2>
-    <form id="search-form">
+    <div id="search-form">
         <input type="text" id="firstname-search" placeholder="Search by Firstname">
-        <!--            <input type="text" id="email-search" placeholder="Search by email" >-->
         <button id="search-button" class="btn btn-secondary " type="submit" >Search</button>
-    </form>
+    </div>
 
     <table class="table" id="data_table">
         <thead class="thead-dark" id="table-header">
-        <!--        <tr>-->
-        <!--            <th scope="col">ID</th>-->
-        <!--            <th scope="col">First Name</th>-->
-        <!--            <th scope="col">Last Name</th>-->
-        <!--            <th scope="col">Gender</th>-->
-        <!--            <th scope="col">Birthdate</th>-->
-        <!--            <th scope="col">Email</th>-->
-        <!--            <th scope="col">Phone Number</th>-->
-        <!--            <th scope="col">Grade</th>-->
-        <!--&lt;!&ndash;            <th scope="col">Faculty Id</th>&ndash;&gt;-->
-        <!--            <th scope="col">Address</th>-->
-        <!--            <th scope="col">Action</th>-->
-        <!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="col">ID</th>-->
+<!--            <th scope="col">First Name</th>-->
+<!--            <th scope="col">Last Name</th>-->
+<!--            <th scope="col">Gender</th>-->
+<!--            <th scope="col">Birthdate</th>-->
+<!--            <th scope="col">Email</th>-->
+<!--            <th scope="col">Phone Number</th>-->
+<!--            <th scope="col">Grade</th>-->
+
+<!--            <th scope="col">Address</th>-->
+<!--            <th scope="col">Action</th>-->
+<!--        </tr>-->
         </thead>
         <tbody id="table-body">
         <!--        <tr>-->
@@ -140,6 +127,7 @@
         <!--        </tr>-->
         </tbody>
     </table>
+</div>
 </div>
 
 <script src="./javascript/facultyhome.js" type="application/javascript"></script>

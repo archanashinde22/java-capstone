@@ -7,6 +7,7 @@
 body {
   width: 100vw;
   height: 100vh;
+  padding:0.2rem;
 }
 
 header {
@@ -54,9 +55,6 @@ display: none;
   }
 
   #search-form{
+  width:100%;
   padding:2 rem;
-  }
-  #message{
-  color: red;
-
   }

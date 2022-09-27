@@ -5,7 +5,7 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-//console.log(document.cookie)
+console.log(document.cookie)
 
 //Cookie
 const cookieArr = document.cookie.split("=");
@@ -13,7 +13,7 @@ const facultyId = cookieArr[1];
 
 let routerParameter;
 
-console.log(document.cookie)
+//console.log(document.cookie)
 
 function handleLogout() {
   let c = document.cookie.split(";");

@@ -71,7 +71,6 @@ public class FacultyServiceImpl implements FacultyService {
                     response.add("logged in successfully");
                     response.add("http://localhost:8080/facultyhome.html");
                     response.add(String.valueOf(facultyOptional.get().getId()));
-                    response.add(facultyOptional.get().getFirstName());
                 }
             } else {
                 response.add("Username or password incorrect");
