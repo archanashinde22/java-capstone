@@ -13,18 +13,29 @@
 
     <h2>School Management System</h2>
     <div class="nav">
-        <p id="welcome-message"></p>
-        <a href="./home.html" onclick="handleLogout()">Logout</a>
+        <div class="btn-group">
+            <p
+                    class=" dropdown-toggle"
 
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+            >Hi</p>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="./home.html" onclick="handleLogout()">Logout</a>
+
+            </div>
+        </div>
     </div>
-</header>
 
+</header>
 <div class="form-container hide" id="form-container" >
-<!--    <h2 id="form-title">  </h2>-->
+    <h2 id="form-title"> </h2>
     <form id="form" >
         <div class="form-group" id="id-reg">
             <label for="id">Id</label>
-            <input type="text" id="id" placeholder="Id" required disabled>
+            <input type="text" id="id" placeholder="Id"  required disabled>
         </div>
         <div class="form-group">
             <label for="firstname">First Name</label>
@@ -35,8 +46,8 @@
             <input type="text" id="lastname" placeholder="Lastname" required>
         </div>
         <div class="form-group">
-            <label for="dateOfBirth" >Date Of Birth (MM-DD-YYYY)</label>
-            <input type="date" id="dateOfBirth" required>
+            <label for="dateOfBirth" >Date Of Birth (YYYY-MM-DD) </label>
+            <input type="date" id="dateOfBirth"  >
         </div>
         <div class="form-group">
             <label>Gender</label>
@@ -45,14 +56,21 @@
             <input type="radio" id="female" name="gender" value ="Female">
             <label for="female"  > Female</label>
         </div>
-
+<!--        <div class="form-group" id="username-reg">-->
+<!--            <label for="username" >Username</label>-->
+<!--            <input type="text" id="username" placeholder="Username" >-->
+<!--        </div>-->
+<!--        <div class="form-group" id="password-reg">-->
+<!--            <label for="password">Password</label>-->
+<!--            <input type="password" id="password" placeholder="Password" >-->
+<!--        </div>-->
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" placeholder="Email" required>
+            <input type="text" id="email" placeholder="Email" >
         </div>
         <div class="form-group">
             <label for="grade">Grade</label>
-            <input type="text" id="grade" placeholder="Grade" required>
+            <input type="text" id="grade" placeholder="Grade" >
         </div>
 <!--        <div class="form-group" id ="role-reg">-->
 <!--            <label>Role</label>-->
@@ -63,7 +81,7 @@
 <!--        </div>-->
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="text"  id="phone" placeholder="Phone Number" required>
+            <input type="text"  id="phone" placeholder="Phone Number" >
         </div>
         <div class="form-group">
             <label for="address">Address</label>
@@ -74,25 +92,22 @@
             ></textarea>
         </div>
         <div >
-            <button id="submit-button" type="submit" >Save</button>
-            <!--                <button id="cancel-button" type="submit" >Save</button>-->
+            <button id="submit-button" class="btn btn-secondary"type="submit" >Save</button>
+            <button id="cancel-button" class="btn btn-secondary" type="submit" >Cancel</button>
             <p class="message" id="message"></p>
         </div>
     </form>
 </div>
 
 
-
-
 <div id="data-container" class="hide">
-
-
+    <h2 id="add-title"> </h2>
     <form id="search-form">
         <input type="text" id="firstname-search" placeholder="Search by Firstname">
         <!--            <input type="text" id="email-search" placeholder="Search by email" >-->
-        <button id="search-button" type="submit" >Search</button>
+        <button id="search-button" class="btn btn-secondary " type="submit" >Search</button>
     </form>
-    <h2 id="add-title"> </h2>
+
     <table class="table" id="data_table">
         <thead class="thead-dark" id="table-header">
         <!--        <tr>-->
@@ -126,6 +141,7 @@
         </tbody>
     </table>
 </div>
+
 <script src="./javascript/facultyhome.js" type="application/javascript"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

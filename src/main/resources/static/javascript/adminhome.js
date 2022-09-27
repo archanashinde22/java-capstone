@@ -88,22 +88,12 @@ const studentIdP = document.getElementById("studentId")
 
 
 const populateEditForm = (data) => {
-         console.log("************************************from data***********************")
-         console.log("id : "+ data.id)
-         console.log("firstName : " +data.firstName)
-         console.log("LastName : " +data.lastName )
-         console.log("Gender  : " + data.gender)
-         console.log("Birhdate : " + data.dob)
-         console.log("email : " + data.email)
-         console.log("Phone : " + data.phoneNumber)
-         console.log("grade : " +data.grade )
-         console.log("address : " + data.address)
 
-
-
-    console.log("populateEditForm by : " + router)
+    console.log("coming from Db : " + data.dob)
 
    let  datePopulate = formatDate(new Date(data.dob))
+
+   console.log("date populate :  " +datePopulate)
     genderBtns.forEach(genderBtn => {
         console.log(genderBtn);
         if(genderBtn.value === data.gender) {
@@ -125,7 +115,7 @@ const populateEditForm = (data) => {
     firstName.value = data.firstName;
     lastName.value = data.lastName;
     dateOfBirth.value = datePopulate;
-
+    console.log(dateOfBirth.value)
     phone.value = data.phoneNumber;
     address.value = data.address;
     email.value = data.email;
@@ -153,7 +143,7 @@ if(router === "updateFacultyById"){
 
 
          }
-
+document.getElementById("message").innerHTML=""
 }
 
 
@@ -214,6 +204,8 @@ const createStudentTable = (data) => {
   dataContainer.classList.remove("hide");
   const tableTitle = document.getElementById("add-title");
   tableTitle.textContent = "Student List";
+
+//  <th scope="col">Faculty Name</th>
   tableHeader.innerHTML = `  <tr>
                                          <th scope="col">ID</th>
                                          <th scope="col">First Name</th>
@@ -223,16 +215,15 @@ const createStudentTable = (data) => {
                                          <th scope="col">Email</th>
                                          <th scope="col">Phone Number</th>
                                          <th scope="col">Grade</th>
+
                                          <th scope="col">Address</th>
-
                                          <th scope="col">Action</th>
-
-
                                      </tr>`;
   dataTable.innerHTML = "";
   data.forEach((element) => {
+
     let birthdate = formatDate(new Date(element.dob));
-//                    <td>${element.dob}</td>
+
     const trString = ` <tr>
                 <td>${element.id}</td>
                 <td>${element.firstName}</td>
@@ -242,11 +233,12 @@ const createStudentTable = (data) => {
                 <td>${element.email}</td>
                 <td>${element.phoneNumber}</td>
                 <td>${element.grade}</td>
+
                 <td>${element.address}</td>
                  <td>
-                  <button   class="change-btn" onclick="assignFaculty(${element.id},'${element.grade}')">Assign Faculty</button>
-                    <button   class="change-btn" onclick="updateStudentById(${element.id})">Edit</button>
-                    <button   class="change-btn" onclick="deleteByStudentId(${element.id})">Delete</button>
+                  <button   class="change-btn btn btn-secondary" onclick="assignFaculty(${element.id},'${element.grade}')">Assign Faculty</button>
+                    <button   class="change-btn btn btn-secondary" onclick="updateStudentById(${element.id})">Edit</button>
+                    <button   class="change-btn btn btn-secondary" onclick="deleteByStudentId(${element.id})">Delete</button>
 
                   </td>
 
@@ -294,8 +286,8 @@ const createFacultyTable = (data) => {
                                                                            <td>${element.role}</td>
                                                                            <td>${element.address}</td>
                                                                             <td>
-                                                                                           <button   class="change-btn" onclick="updateFacultyById(${element.id})">Edit</button> /
-                                                                                           <button   class="change-btn" onclick="deleteByFacultyId(${element.id})">Delete</button>
+                                                                                           <button   class="change-btn btn btn-secondary"  onclick="updateFacultyById(${element.id})">Edit</button> /
+                                                                                           <button   class="change-btn btn btn-secondary"  onclick="deleteByFacultyId(${element.id})">Delete</button>
                                                                              </td>
                                                               </tr>
                                                                `;
@@ -325,6 +317,8 @@ console.log("getFacultyByGrade : " + studentId + " :::: " +studentGrade )
 
 }
 const populateSelectOptions = (data ,studentId) => {
+
+
 assignFacultySelect.innerHTML = "";
 console.log(studentId)
 console.log("populateSelectOptions : " + studentId  )
@@ -344,13 +338,10 @@ assignFacultySelect.appendChild(opt);
 
 const assignFacultyToStudent = async (e) => {
 e.preventDefault();
- assignFacultyContainer.classList.add("hide");
+assignFacultyContainer.classList.add("hide");
 let studentIdParam = studentIdP.innerText;
-//console.log("assignFacultyToStudent : " + studentId  )
 const facultySelectedId = assignFacultySelect.options[assignFacultySelect.selectedIndex].value;
-console.log("Selected faculty Value " + facultySelectedId)
-const facultySelectedName = assignFacultySelect.options[assignFacultySelect.selectedIndex].text;
-console.log("Selected faculty Value " + facultySelectedName)
+
 
   const response = await fetch(`${studentBaseUrl}/${studentIdParam}/${facultySelectedId}`, {
       method: "PUT",
@@ -361,8 +352,6 @@ console.log("Selected faculty Value " + facultySelectedName)
         return getStudentList();
 
     }
-
-
 }
 async function getStudentByStudentId(studentId){
 console.log("getStudentByStudentId" +studentId)
@@ -404,6 +393,7 @@ async function deleteByFacultyId(faculty) {
   return getFacultyList();
 }
 async function updateFacultyById(faculty) {
+ document.getElementById("message").innerHTML=""
   router = "updateFacultyById";
   idForm.classList.remove("hide");
   usernameForm.classList.remove("hide");
@@ -415,6 +405,7 @@ async function updateFacultyById(faculty) {
 
 }
 async function updateStudentById(studentId) {
+ document.getElementById("message").innerHTML=""
   router = "updateStudentById";
   idForm.classList.remove("hide");
   usernameForm.classList.add("hide");
@@ -430,6 +421,7 @@ async function updateStudentById(studentId) {
 
 
 async function addStudentRouter() {
+ document.getElementById("message").innerHTML=""
   router = "addStudent";
   idForm.classList.add("hide");
   usernameForm.classList.add("hide");
@@ -439,6 +431,7 @@ async function addStudentRouter() {
 }
 
 async function addFacultyRouter() {
+ document.getElementById("message").innerHTML=""
   router = "addFaculty";
   idForm.classList.add("hide");
   usernameForm.classList.remove("hide");
@@ -446,22 +439,62 @@ async function addFacultyRouter() {
   roleForm.classList.remove("hide");
   formContainer.classList.remove("hide");
 }
+
+//const checkInputValues = () => {
+//
+//   let nullInput = false;
+//   const gender = document.querySelector(`input[name="gender"]:checked`);
+//   const role = document.querySelector(`input[name="role"]:checked`);
+//    if( firstName.value === null || lastName.value === null || dateOfBirth.value === null
+//      || gender.value === null || phone.value === null || grade.value === null || address.value === null
+//      || email.value === null )
+//      {
+//            nullInput = true;
+//
+//
+//        }
+//        if(router.includes("Faculty")){
+//
+//             if( username.value === null ||  role.value === null){
+//                  nullInput = true;
+//         }
+//
+//      }
+//      return nullInput;
+//}
+
+//const assignNullValuesToInput = () => {
+//        firstName.value = "";
+//        lastName.value = "";
+//        dateOfBirth.value = "";
+//    //    gender.value = "";
+//        phone.value = "";
+//        grade.value = "";
+//        address.value = "";
+//        username.value = "";
+//        password.value = "";
+//    //    role.value = "";
+//        email.value = "";
+//
+//}
 const handleSubmit = async (e) => {
   e.preventDefault();
-  formContainer.classList.add("hide");
-//      let genderSelected;
-//                   for (const btn of genderBtns) {
-//                       if (btn.checked) {
-//                           genderSelected = btn.value;
-//                           break;
-//                       }
-//                   }
+// if(checkInputValues){
+//    document.getElementById("message").innerHTML ="Input values cannot be empty"
+//
+// }  else{
+
+
+   formContainer.classList.add("hide");
+// document.getElementById("message").innerHTML=""
+
   if (router === "addFaculty") {
-    const gender = document.querySelector(`input[name="gender"]:checked`);
-    const role = document.querySelector(`input[name="role"]:checked`);
-    console.log("add faculty")
-    console.log(gender.value)
-    console.log(role.value)
+      const gender = document.querySelector(`input[name="gender"]:checked`);
+      const role = document.querySelector(`input[name="role"]:checked`);
+
+//    console.log("add faculty")
+//    console.log(gender.value)
+//    console.log(role.value)
     let bodyObj = {
       firstName: firstName.value,
       lastName: lastName.value,
@@ -476,6 +509,7 @@ const handleSubmit = async (e) => {
       email: email.value,
     };
 
+//        assignNullValuesToInput();
         firstName.value = "";
         lastName.value = "";
         dateOfBirth.value = "";
@@ -522,7 +556,7 @@ const handleSubmit = async (e) => {
       address: address.value,
       email: email.value,
     };
-    console.log(bodyObj)
+
     firstName.value = "";
     lastName.value = "";
     dateOfBirth.value = "";
@@ -530,6 +564,7 @@ const handleSubmit = async (e) => {
     grade.value = "";
     address.value = "";
     email.value = "";
+//       assignNullValuesToInput();
 
     const response = await fetch(`${studentBaseUrl}/faculty/${facultyId}`, {
       method: "POST",
@@ -553,18 +588,18 @@ const handleSubmit = async (e) => {
     console.log("update Student")
     formContainer.classList.add("hide");
     const gender = document.querySelector(`input[name="gender"]:checked`);
-
-    console.log("updateStudentById : " + routerParameter);
-        console.log("update Student id : "+id.value);
-        console.log("update Student firstName : "+firstName.value);
-        console.log("update Student lastName : "+lastName.value);
-        console.log("update Student dob : " + dateOfBirth.value);
-        console.log("update Student phone : "+ phone.value);
-        console.log("update Student grade : "+ grade.value);
-        console.log("update Student Address : "+ address.value);
-        console.log("update Student email : "+email.value);
-        console.log("update Student Gender : "+gender.value);
-
+//
+//    console.log("updateStudentById : " + routerParameter);
+//        console.log("update Student id : "+id.value);
+//        console.log("update Student firstName : "+firstName.value);
+//        console.log("update Student lastName : "+lastName.value);
+//        console.log("update Student dob : " + dateOfBirth.value);
+//        console.log("update Student phone : "+ phone.value);
+//        console.log("update Student grade : "+ grade.value);
+//        console.log("update Student Address : "+ address.value);
+//        console.log("update Student email : "+email.value);
+//        console.log("update Student Gender : "+gender.value);
+        console.log( "before sending to update : " + dateOfBirth.value)
     let bodyObj = {
       id: routerParameter,
       firstName: firstName.value,
@@ -576,12 +611,12 @@ const handleSubmit = async (e) => {
       address: address.value,
       email: email.value,
     };
-
+//    assignNullValuesToInput();
 
     firstName.value = "";
     lastName.value = "";
     dateOfBirth.value = "";
-//    gender.value = "";
+//   gender.value = "";
     phone.value = "";
     grade.value = "";
     address.value = "";
@@ -633,6 +668,8 @@ const handleSubmit = async (e) => {
 //    role.value = "";
     email.value == "";
 
+//       assignNullValuesToInput();
+
     const response = await fetch(`${facultyBaseUrl}`, {
       method: "PUT",
       body: JSON.stringify(bodyObj),
@@ -645,7 +682,7 @@ const handleSubmit = async (e) => {
 
 
   }
-
+//}
 };
 
 const cancelForm =()=> {
