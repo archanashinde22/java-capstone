@@ -39,7 +39,7 @@ public class FacultyServiceImpl implements FacultyService {
         Faculty faculty = new Faculty(facultyDto);
         facultyRepository.saveAndFlush(faculty);
         response.add("User Added Successfully");
-        response.add("http://localhost:8080/home.html");
+        response.add("http://localhost:8080/index.html");
         return  response;
     }
 

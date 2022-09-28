@@ -25,9 +25,8 @@ public class Student {
     private String firstName;
     @Column(name = "last_name" , nullable = false)
     private String lastName;
-    @Column(name = "birth_date", columnDefinition = "DATE")
-//    @DateTimeFormat(pattern = "YYYY-MM-DD")
-//    @Temporal(TemporalType.DATE)
+    @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     @Column(name = "gender")
     private String gender;

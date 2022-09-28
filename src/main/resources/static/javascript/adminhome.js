@@ -25,17 +25,6 @@ function handleLogout() {
 
   }
 }
-function padTo2Digits(num) {
-  return num.toString().padStart(2, '0');
-}
-
-function formatDate(date) {
-  return [
-    date.getFullYear(),
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-  ].join('-');
-}
 
 const dataContainer = document.getElementById("data-container");
 console.log("faculty id " + facultyId);
@@ -89,11 +78,9 @@ const studentIdP = document.getElementById("studentId")
 
 const populateEditForm = (data) => {
 
-    console.log("coming from Db : " + data.dob)
+    let dateDB = data.dob.substring(0,10)
 
-   let  datePopulate = formatDate(new Date(data.dob))
 
-   console.log("date populate :  " +datePopulate)
     genderBtns.forEach(genderBtn => {
         console.log(genderBtn);
         if(genderBtn.value === data.gender) {
@@ -114,7 +101,7 @@ const populateEditForm = (data) => {
     id.value = data.id;
     firstName.value = data.firstName;
     lastName.value = data.lastName;
-    dateOfBirth.value = datePopulate;
+    dateOfBirth.value = dateDB;
     console.log(dateOfBirth.value)
     phone.value = data.phoneNumber;
     address.value = data.address;
@@ -221,19 +208,18 @@ const createStudentTable = (data) => {
                                      </tr>`;
   dataTable.innerHTML = "";
   data.forEach((element) => {
-
-    let birthdate = formatDate(new Date(element.dob));
+//<td>${birthdate}</td>
+//    let birthdate = formatDate(new Date(element.dob));
 
     const trString = ` <tr>
                 <td>${element.id}</td>
                 <td>${element.firstName}</td>
                 <td>${element.lastName}</td>
                 <td>${element.gender}</td>
-                <td>${birthdate}</td>
+                <td>${new Date(element.dob).toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
                 <td>${element.email}</td>
                 <td>${element.phoneNumber}</td>
                 <td>${element.grade}</td>
-
                 <td>${element.address}</td>
                  <td>
                   <button   class="change-btn btn btn-secondary" onclick="assignFaculty(${element.id},'${element.grade}')">Assign Faculty</button>
@@ -241,7 +227,6 @@ const createStudentTable = (data) => {
                     <button   class="change-btn btn btn-secondary" onclick="deleteByStudentId(${element.id})">Delete</button>
 
                   </td>
-
 
           </tr>
     `;
@@ -272,13 +257,13 @@ const createFacultyTable = (data) => {
                                                                </tr>`;
   dataTable.innerHTML = "";
   data.forEach((element) => {
-   let dateOfBirth = formatDate(new Date(element.dob));
+//   let dateOfBirth = formatDate(new Date(element.dob));
     const trString = ` <tr>
                                                                            <td>${element.id}</td>
                                                                            <td>${element.firstName}</td>
                                                                            <td>${element.lastName}</td>
                                                                            <td>${element.gender}</td>
-                                                                           <td>${dateOfBirth}</td>
+                                                                           <td>${new Date(element.dob).toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
                                                                            <td>${element.email}</td>
                                                                            <td>${element.phoneNumber}</td>
                                                                            <td>${element.grade}</td>
@@ -491,11 +476,7 @@ const handleSubmit = async (e) => {
   if (router === "addFaculty") {
       const gender = document.querySelector(`input[name="gender"]:checked`);
       const role = document.querySelector(`input[name="role"]:checked`);
-
-//    console.log("add faculty")
-//    console.log(gender.value)
-//    console.log(role.value)
-    let bodyObj = {
+      let bodyObj = {
       firstName: firstName.value,
       lastName: lastName.value,
       dob: dateOfBirth.value,
@@ -588,18 +569,7 @@ const handleSubmit = async (e) => {
     console.log("update Student")
     formContainer.classList.add("hide");
     const gender = document.querySelector(`input[name="gender"]:checked`);
-//
-//    console.log("updateStudentById : " + routerParameter);
-//        console.log("update Student id : "+id.value);
-//        console.log("update Student firstName : "+firstName.value);
-//        console.log("update Student lastName : "+lastName.value);
-//        console.log("update Student dob : " + dateOfBirth.value);
-//        console.log("update Student phone : "+ phone.value);
-//        console.log("update Student grade : "+ grade.value);
-//        console.log("update Student Address : "+ address.value);
-//        console.log("update Student email : "+email.value);
-//        console.log("update Student Gender : "+gender.value);
-        console.log( "before sending to update : " + dateOfBirth.value)
+
     let bodyObj = {
       id: routerParameter,
       firstName: firstName.value,
@@ -620,7 +590,7 @@ const handleSubmit = async (e) => {
     phone.value = "";
     grade.value = "";
     address.value = "";
-    email.value == "";
+    email.value = "";
 
     const response = await fetch(`${studentBaseUrl}`, {
       method: "PUT",
@@ -666,7 +636,7 @@ const handleSubmit = async (e) => {
     username.value = "";
     password.value = "";
 //    role.value = "";
-    email.value == "";
+    email.value = "";
 
 //       assignNullValuesToInput();
 
@@ -686,6 +656,7 @@ const handleSubmit = async (e) => {
 };
 
 const cancelForm =()=> {
+
     formContainer.classList.add("hide")
 }
 cancelBtn.addEventListener("click", cancelForm);

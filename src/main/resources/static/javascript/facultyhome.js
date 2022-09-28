@@ -22,22 +22,10 @@ function handleLogout() {
 
   }
 }
-function padTo2Digits(num) {
-  return num.toString().padStart(2, '0');
-}
-
-function formatDate(date) {
-  return [
-    date.getFullYear(),
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-  ].join('-');
-}
 
 const dataContainer = document.getElementById("data-container");
 const tableTitle = document.getElementById("add-title");
 console.log("faculty id " + facultyId);
-
 
 // form input elements
 
@@ -74,13 +62,10 @@ async function getStudentList() {
     headers: headers,
   })
     .then((response) => response.json())
-//    .then((data) => console.log(data))
     .then((data) => createStudentTable(data))
     .catch((err) => console.error(err));
 }
-
-
-
+// DISPLAY STUDENT DATA IN TABLE FORMAT
 const createStudentTable = (data) => {
 
 tableTitle.innerHTML = `Students List`;
@@ -98,17 +83,14 @@ tableTitle.innerHTML = `Students List`;
                                      </tr>`;
   dataTable.innerHTML = "";
   data.forEach((element) => {
-
-    let birthdate = formatDate(new Date(element.dob));
     const trString = ` <tr>
                 <td>${element.id}</td>
                 <td>${element.firstName}</td>
                 <td>${element.lastName}</td>
                 <td>${element.gender}</td>
-                <td>${birthdate}</td>
+                <td>${new Date(element.dob).toLocaleDateString('en-US', { timeZone: 'UTC' })}</td>
                 <td>${element.email}</td>
                 <td>${element.phoneNumber}</td>
-
                 <td>${element.address}</td>
                  <td>
                     <button   class="change-btn btn btn-secondary" onclick="updateStudentById(${element.id})">Edit</button>
@@ -119,52 +101,29 @@ tableTitle.innerHTML = `Students List`;
 };
 
 const populateEditForm = (data) => {
-
-//        console.log("updateStudentById : " + routerParameter);
-//        console.log("update Student id : " + data.id);
-//        console.log("update Student firstName : "+ data.firstName);
-//        console.log("update Student lastName : "+ data.lastName);
-//        console.log("update Student dob : "+ data.dob);
-//        console.log("update Student phone : "+data.phoneNumber);
-//        console.log("update Student grade : "+ data.grade);
-//        console.log("update Student Address : "+  data.address);
-//        console.log("update Student email : " + data.email);
-//        console.log("update Student Gender : " + data.gender);
-        console.log("update Student Faculty : " + data.facultyDto.firstName);
-
-   let  datePopulate = formatDate(new Date(data.dob))
+          let dateDB = data.dob.substring(0,10)
     genderBtns.forEach(genderBtn => {
         console.log(genderBtn);
         if(genderBtn.value === data.gender) {
-//            console.log(genderBtn);
-
            genderBtn.checked=true;
-//           console.log(genderBtn.value);
-
           }
          else{
            genderBtn.checked=false;
          }
      })
-     const gender = document.querySelector(`input[name="gender"]:checked`);
-//     console.log(gender);
-//     console.log(gender.value);
+    const gender = document.querySelector(`input[name="gender"]:checked`);
 
     id.value = data.id;
     firstName.value = data.firstName;
     lastName.value = data.lastName;
-    dateOfBirth.value = datePopulate;
-
+    dateOfBirth.value = dateDB;
     phone.value = data.phoneNumber;
     address.value = data.address;
     email.value = data.email;
     grade.value = data.grade;
 
 }
-
-
-
-
+//SEARCH STUDENT BY FIRSTNAME
 const searchByFirstName = async () =>{
 
     const firstName = firstNameSearch.value;
@@ -179,7 +138,6 @@ const searchByFirstName = async () =>{
         .then((data) => createStudentTable(data))
         .catch((err) => console.error(err));
         }
-
 }
 
 async function getStudentByStudentId(studentId){
@@ -206,16 +164,12 @@ console.log("getFacultyByFacultyId")
 }
 
 async function updateStudentById(studentId) {
-// document.getElementById("message").innerHTML=""
-
   idForm.classList.remove("hide");
   formContainer.classList.remove("hide");
   routerParameter = studentId;
   getStudentByStudentId(routerParameter);
 
 }
-
-
 const handleSubmit = async (e) => {
   e.preventDefault();
    formContainer.classList.add("hide");
@@ -253,7 +207,8 @@ const handleSubmit = async (e) => {
 
 };
 
-const cancelForm =()=> {
+const cancelForm = (e)=> {
+     e.preventDefault();
     formContainer.classList.add("hide")
     getStudentList();
 }

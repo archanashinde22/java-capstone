@@ -24,7 +24,7 @@ public class Faculty {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "yyyy-MM-DD")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     @Column(name = "gender")
     private String gender;
