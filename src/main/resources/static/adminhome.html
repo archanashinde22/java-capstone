@@ -30,6 +30,220 @@
        </div>
 
     </header>
+
+
+  <div class="form-container hide" id="form-container">
+      <h2 id="form-title"></h2>
+      <form id="form">
+          <div class="mb-3 row" id="id-reg">
+              <label for="id" class="col-sm-2 col-form-label">Id</label>
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          id="id"
+                          placeholder="Id"
+                          class="form-control"
+                          readonly
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label for="firstname" class="col-sm-2 col-form-label"
+              >First Name</label
+              >
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          class="form-control"
+                          id="firstname"
+                          placeholder="Firstname"
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label for="lastname" class="col-sm-2 col-form-label"
+              >Last Name</label
+              >
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          class="form-control"
+                          id="lastname"
+                          placeholder="Lastname"
+                  />
+              </div>
+          </div>
+          <div class="mb-3 row">
+              <label for="dateOfBirth" class="col-sm-2 col-form-label"
+              >Date Of Birth
+              </label>
+              <div class="col-sm-10">
+                  <input type="date" id="dateOfBirth" class="form-control"  />
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label class="col-sm-2 col-form-label radio-label">Gender</label>
+              <div class="form-check form-check-inline">
+                  <input
+                          type="radio"
+                          id="male"
+                          name="gender"
+                          class="form-check-input"
+                          value="Male"
+                          checked
+                  />
+                  <label for="male" class="form-check-label">Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input
+                          type="radio"
+                          id="female"
+                          name="gender"
+                          class="form-check-input"
+                          value="Female"
+                  />
+                  <label for="female" class="form-check-label"> Female</label>
+              </div>
+          </div>
+          <div class="mb-3 row" id="username-reg">
+              <label for="username" class="col-sm-2 col-form-label">Username</label>
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          id="username"
+                          class="form-control"
+                          placeholder="Username"
+                          required
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row" id="password-reg">
+              <label for="password" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                  <input
+                          type="password"
+                          id="password"
+                          class="form-control"
+                          placeholder="Password"
+                          required
+                  />
+              </div>
+          </div>
+          <div class="mb-3 row">
+              <label for="email" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          id="email"
+                          class="form-control"
+                          placeholder="Email"
+                          required
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label for="grade" class="col-sm-2 col-form-label">Grade</label>
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          id="grade"
+                          class="form-control"
+                          placeholder="Grade"
+                          required
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row" id="role-reg">
+              <label class="col-sm-2 col-form-label radio-label">Role</label>
+              <div class="form-check form-check-inline">
+                  <input
+                          type="radio"
+                          id="faculty"
+                          name="role"
+                          class="form-check-input"
+                          value="2"
+                          checked
+                  />
+                  <label for="faculty" class="form-check-label"> Faculty</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input
+                          type="radio"
+                          id="admin"
+                          name="role"
+                          class="form-check-input"
+                          value="1"
+                  />
+                  <label for="admin" class="form-check-label"> Admin</label>
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label for="phone" class="col-sm-2 col-form-label"
+              >Phone Number</label
+              >
+              <div class="col-sm-10">
+                  <input
+                          type="text"
+                          id="phone"
+                          class="form-control"
+                          placeholder="Phone Number"
+                          maxlength="10"
+                          required
+                  />
+              </div>
+          </div>
+
+          <div class="mb-3 row">
+              <label for="address" class="col-sm-2 col-form-label">Address</label>
+              <div class="col-sm-10">
+            <textarea
+                    id="address"
+                    placeholder="Address"
+                    class="form-control"
+                    rows="2"
+                    required
+            ></textarea>
+              </div>
+          </div>
+          <div class="btn-container">
+              <button id="submit-button" class="btn btn-secondary" type="submit">
+                  Save
+              </button>
+              <button id="cancel-button" class="btn btn-secondary" type="submit">
+                  Cancel
+              </button>
+              <p class="error-message" id="message"></p>
+          </div>
+      </form>
+  </div>
+
+
+  <div id="assign-faculty-container" class="hide">
+      <p id="studentId"  class="hide"></p>
+      <h3> Select the Faculty</h3>
+
+      <form  id="assign-faculty-form">
+          <label for="assigned-faculty">Select Faculty:</label>
+
+          <select id="assigned-faculty"  class="custom-select custom-select-sm form-select"  name="facultyList">
+              <!--            <option value="volvo">Volvo XC90</option>-->
+          </select>
+          <button id="Student-faculty-assign-button" type="submit" class="btn btn-secondary">Submit</button>
+      </form>
+
+  </div>
+
+
+
+
+
     <div class="menu" style="padding:1rem;">
         <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,93 +264,8 @@
             </div>
         </div>
     </div>
-    <div class="form-container hide" id="form-container" >
-        <h2 id="form-title"> </h2>
-        <form id="form" >
-            <div class="form-group" id="id-reg">
-                <label for="id">Id</label>
-                <input type="text" id="id" placeholder="Id"  required disabled>
-            </div>
-            <div class="form-group">
-                <label for="firstname">First Name</label>
-                <input type="text" id="firstname" placeholder="Firstname" >
-            </div>
-            <div class="form-group">
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname" placeholder="Lastname" >
-            </div>
-            <div class="form-group">
-                <label for="dateOfBirth" >Date Of Birth  </label>
-                <input type="date" id="dateOfBirth"  >
-            </div>
-            <div class="form-group">
-                <label>Gender</label>
-                <input type="radio" id="male"  name="gender" value ="Male" checked>
-                <label for="male">Male</label>
-                <input type="radio" id="female" name="gender" value ="Female">
-                <label for="female"  > Female</label>
-            </div>
-            <div class="form-group" id="username-reg">
-                <label for="username" >Username</label>
-                <input type="text" id="username" placeholder="Username" >
-            </div>
-            <div class="form-group" id="password-reg">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" >
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" placeholder="Email" >
-            </div>
-            <div class="form-group">
-                <label for="grade">Grade</label>
-                <input type="text" id="grade" placeholder="Grade" >
-            </div>
-            <div class="form-group" id ="role-reg">
-                <label>Role</label>
-                <input type="radio" id="faculty" name="role" value="2" checked>
-                <label for="faculty" > Faculty</label>
-                <input type="radio" id="admin" name="role" value="1">
-                <label for="admin" > Admin</label>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="text"  id="phone" placeholder="Phone Number" >
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-               <textarea
-                        id="address"
-                        placeholder="Address"
-                        rows="2"
-                ></textarea>
-            </div>
-            <div >
-                <button id="submit-button" class="btn btn-secondary"type="submit" >Save</button>
-                <button id="cancel-button" class="btn btn-secondary" type="submit" >Cancel</button>
-                <p class="error-message" id="message"></p>
-            </div>
-        </form>
-    </div>
-
-<div id="assign-faculty-container" class="hide">
-    <p id="studentId"  class="hide"></p>
-    <h3> Select the Faculty</h3>
-
-    <form  id="assign-faculty-form">
-        <label for="assigned-faculty">Select Faculty:</label>
-
-        <select id="assigned-faculty"  class="custom-select custom-select-sm form-select"  name="facultyList">
-<!--            <option value="volvo">Volvo XC90</option>-->
-<!--            <option value="saab">Saab 95</option>-->
-<!--            <option value="mercedes">Mercedes SLK</option>-->
-<!--            <option value="audi">Audi TT</option>-->
-        </select>
-        <button id="Student-faculty-assign-button" type="submit" class="btn btn-secondary">Submit</button>
-    </form>
 
 
-</div>
 
 
     <div id="data-container" class="hide">

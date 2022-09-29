@@ -8,6 +8,15 @@ body {
   width: 100vw;
   height: 100vh;
   padding:0.2rem;
+background: hsla(0, 0%, 89%, 1);
+
+background: radial-gradient(circle, hsla(0, 0%, 89%, 1) 0%, hsla(105, 11%, 85%, 1) 100%);
+
+background: -moz-radial-gradient(circle, hsla(0, 0%, 89%, 1) 0%, hsla(105, 11%, 85%, 1) 100%);
+
+background: -webkit-radial-gradient(circle, hsla(0, 0%, 89%, 1) 0%, hsla(105, 11%, 85%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#E3E3E3", endColorstr="#D8DED6", GradientType=1 );
 }
 
 header {
@@ -45,16 +54,32 @@ display: none;
     Width:100%
 }
 
-  #form , #assign-faculty-form{
-    border:1,solid, grey;
+  #form{
+border:1,solid, grey;
     margin:auto;
-    background-color:rgb(219, 162, 86);
     width:fit-content;
     box-shadow: 0px 0px 7px gray;
+    background-color:#fff;
     padding:1rem;
+    width:650px;
   }
 
   #search-form{
   width:100%;
-  padding:2 rem;
+  padding:3 rem;
+
   }
+
+.radio-label{
+margin-right:1rem;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container button{
+  width:100px;
+  margin: auto;
+}

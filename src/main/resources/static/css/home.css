@@ -7,6 +7,12 @@
 body {
   width: 100vw;
   height: 100vh;
+ background: url("../images/bg2.jpg") center / cover no-repeat;
+
+}
+.welcome {
+font-size: 50Px;
+margin-top: 4%;
 }
 
 header {

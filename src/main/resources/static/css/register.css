@@ -7,7 +7,12 @@
 body {
   width: 100vw;
   height: 100vh;
+/*background-image: url("../images/istockphoto-1161683825-612x612.jpg");*/
+ background: url("../images/bg2.jpg") center / cover no-repeat;
+ /*background-repeat:no-repeat;
+ background-size: contain; */
 }
+
 
 header {
     width= 100%
@@ -33,4 +38,27 @@ h2 {
   padding: 10px;
   text-decoration: none;
   color: black;
+}
+
+
+.main-container{
+  display:flex;
+  width:100%;
+  justify-content:center;
+
+}
+
+.register-container{
+    border:1px solid gray;
+    margin:auto;
+    box-shadow: 0px 0px 7px gray;
+    background-color:#fff;
+    padding:1rem;
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+}
+
+.radio-label{
+margin-right:1rem;
 }
