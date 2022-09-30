@@ -151,10 +151,10 @@ public class Student {
         if(studentDto.getAddress() != null) {
             this.address = studentDto.getAddress();
         }
-//        newly added
-        if(studentDto.getFacultyDto() !=null) {
-            this.faculty = new Faculty(studentDto.getFacultyDto());
-        }
+////        newly added
+//        if(studentDto.getFacultyDto() !=null) {
+//            this.faculty = new Faculty(studentDto.getFacultyDto());
+//        }
     }
 
 }

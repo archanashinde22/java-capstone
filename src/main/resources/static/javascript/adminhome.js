@@ -64,7 +64,6 @@ const genderBtns = document.querySelectorAll(`input[name="gender"]`);
 const roleBtns = document.querySelectorAll(`input[name="role"]`);
 
 //search form elements
-//
 const searchBtn = document.getElementById("search-button");
 const firstNameSearch =  document.getElementById("firstname-search");
 
@@ -73,13 +72,30 @@ const assignFacultyContainer = document.getElementById("assign-faculty-container
 const assignFacultySelect = document.getElementById("assigned-faculty");
 const assignFacultyBtn = document.getElementById("Student-faculty-assign-button");
 const studentIdP = document.getElementById("studentId")
+const cancelAssignFacultyButton = document.getElementById("faculty-assign-cancel-button");
 
+
+// password change form buttons
+const passwordChangeContainer = document.getElementById("password-container");
+const changePasswordForm = document.getElementById("change-password-form");
+const newPasswordInput = document.getElementById("newPassword");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+const changePasswordBtn = document.getElementById("change-password-button");
+const passwordMessage = document.getElementById("change-password-message");
+
+function changePassword() {
+  console.log("in change password");
+  passwordChangeContainer.classList.remove("hide");
+}
+
+function hidePasswordContainer() {
+passwordChangeContainer.classList.add("hide");
+}
 
 
 const populateEditForm = (data) => {
 
     let dateDB = data.dob.substring(0,10)
-
 
     genderBtns.forEach(genderBtn => {
         console.log(genderBtn);
@@ -448,32 +464,13 @@ async function addFacultyRouter() {
 //      return nullInput;
 //}
 
-//const assignNullValuesToInput = () => {
-//        firstName.value = "";
-//        lastName.value = "";
-//        dateOfBirth.value = "";
-//    //    gender.value = "";
-//        phone.value = "";
-//        grade.value = "";
-//        address.value = "";
-//        username.value = "";
-//        password.value = "";
-//    //    role.value = "";
-//        email.value = "";
-//
-//}
+
+
 const handleSubmit = async (e) => {
-  e.preventDefault();
-// if(checkInputValues){
-//    document.getElementById("message").innerHTML ="Input values cannot be empty"
-//
-// }  else{
+    e.preventDefault();
+    formContainer.classList.add("hide");
 
-
-   formContainer.classList.add("hide");
-// document.getElementById("message").innerHTML=""
-
-  if (router === "addFaculty") {
+    if (router === "addFaculty") {
       const gender = document.querySelector(`input[name="gender"]:checked`);
       const role = document.querySelector(`input[name="role"]:checked`);
       let bodyObj = {
@@ -490,18 +487,15 @@ const handleSubmit = async (e) => {
       email: email.value,
     };
 
-//        assignNullValuesToInput();
-        firstName.value = "";
-        lastName.value = "";
-        dateOfBirth.value = "";
-    //    gender.value = "";
-        phone.value = "";
-        grade.value = "";
-        address.value = "";
-        username.value = "";
-        password.value = "";
-    //    role.value = "";
-        email.value = "";
+    firstName.value = "";
+    lastName.value = "";
+    dateOfBirth.value = "";
+    phone.value = "";
+    grade.value = "";
+    address.value = "";
+    username.value = "";
+    password.value = "";
+    email.value = "";
 
     const response = await fetch(`${facultyBaseUrl}/register`, {
       method: "POST",
@@ -607,8 +601,7 @@ const handleSubmit = async (e) => {
     console.log("update faculty")
     const gender = document.querySelector(`input[name="gender"]:checked`);
     const role = document.querySelector(`input[name="role"]:checked`);
-   // id = routerParameter;
-   console.log(routerParameter)
+    console.log(routerParameter)
     console.log("updateFacultyById : " + routerParameter);
 
     let bodyObj = {
@@ -629,16 +622,16 @@ const handleSubmit = async (e) => {
     firstName.value = "";
     lastName.value = "";
     dateOfBirth.value = "";
-//    gender.value = "";
+
     phone.value = "";
     grade.value = "";
     address.value = "";
     username.value = "";
     password.value = "";
-//    role.value = "";
+
     email.value = "";
 
-//       assignNullValuesToInput();
+
 
     const response = await fetch(`${facultyBaseUrl}`, {
       method: "PUT",
@@ -652,19 +645,48 @@ const handleSubmit = async (e) => {
 
 
   }
-//}
+
 };
+
+
+const handleChangePassword = async (e) => {
+  e.preventDefault();
+  if(newPasswordInput.value != confirmPasswordInput.value){
+   passwordMessage.innerHTML= "Both password are not same !!"
+  } else {
+    passwordChangeContainer.classList.add("hide")
+    let changedPassword = newPasswordInput.value;
+    console.log("handle Change passwprd : "+ changedPassword)
+    const response = await fetch(`${facultyBaseUrl}/${facultyId}/${changedPassword}`, {
+         method: "PUT",
+         headers: headers,
+       }).catch((err) => console.error(err.message));
+       if (response.status === 200) {
+            alert("Password changed successfully!")
+    }
+        newPasswordInput.value=""
+
+        confirmPasswordInput.value=""
+  }
+
+
+}
 
 const cancelForm =()=> {
 
     formContainer.classList.add("hide")
 }
+
+const cancelAssignFacultyForm = () => {
+    assignFacultyContainer.classList.add("hide");
+}
 cancelBtn.addEventListener("click", cancelForm);
 searchBtn.addEventListener("click", searchByFirstName);
 addFacultyBtn.addEventListener("click", addFacultyRouter);
 addStudentBtn.addEventListener("click", addStudentRouter);
-
+cancelAssignFacultyButton.addEventListener("click", cancelAssignFacultyForm);
 facultyListBtn.addEventListener("click", getFacultyList);
 studentListBtn.addEventListener("click", getStudentList);
 assignFacultyBtn.addEventListener("click", assignFacultyToStudent);
 submitBtn.addEventListener("click", handleSubmit);
+changePasswordBtn.addEventListener("click", handleChangePassword);

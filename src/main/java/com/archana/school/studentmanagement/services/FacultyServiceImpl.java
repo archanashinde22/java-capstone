@@ -19,7 +19,7 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+//  Add or Register Faculty
      @Override
      @Transactional
     public List<String> addFaculty(FacultyDto facultyDto){

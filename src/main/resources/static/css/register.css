@@ -7,22 +7,19 @@
 body {
   width: 100vw;
   height: 100vh;
-/*background-image: url("../images/istockphoto-1161683825-612x612.jpg");*/
- background: url("../images/bg2.jpg") center / cover no-repeat;
- /*background-repeat:no-repeat;
- background-size: contain; */
+  background: url("../images/bg2.jpg") center / cover no-repeat;
 }
 
 
 header {
-    width= 100%
-  height: 5%;
-  overflow: hidden;
+  width: 100%;
+  height: 10%;
   padding: 0.8rem;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid gray;
-  background-color:#ECAF82;
+  background-color: #ecaf82;
+
 }
 h2 {
   display: block;
@@ -31,7 +28,6 @@ h2 {
 .nav {
   /* width: 50%; */
   display: flex;
-  justify-content: space-evenly;
   justify-content: space-between;
 }
 .nav a {
@@ -60,5 +56,5 @@ h2 {
 }
 
 .radio-label{
-margin-right:1rem;
+    margin-right:1rem;
 }

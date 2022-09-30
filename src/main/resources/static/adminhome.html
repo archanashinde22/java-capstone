@@ -24,12 +24,60 @@
                 >Hi</p>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="./home.html" onclick="handleLogout()">Logout</a>
+                    <a class="dropdown-item" href="#" onclick="changePassword()"
+                    >Change Password
+                    </a>
 
                 </div>
             </div>
        </div>
 
     </header>
+  <div class="password-container hide" id="password-container">
+      <div class="password-change">
+          <button type="button" id ="close" onclick="hidePasswordContainer()">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          </button>
+          <h2>Change Password</h2>
+          <form id="change-password-form">
+              <div class="form-group">
+                  <label for="newPassword" class="form-label">New Password </label>
+                  <input
+                          type="password"
+                          id="newPassword"
+                          class="form-control"
+                          placeholder="Password"
+                          required
+                  />
+              </div>
+              <div class="form-group">
+                  <label for="confirmPassword" class="form-label"
+                  >Confirm Password</label
+                  >
+                  <input
+                          type="password"
+                          id="confirmPassword"
+                          class="form-control"
+                          placeholder="Password"
+                          required
+                  />
+              </div>
+
+              <div class="form-group">
+                  <button
+                          id="change-password-button"
+                          class="btn btn-secondary form-control"
+                          type="submit"
+                  >
+                      Change Password
+                  </button>
+                  <p class="message"  id="change-password-message"></p>
+              </div>
+          </form>
+      </div>
+  </div>
 
 
   <div class="form-container hide" id="form-container">
@@ -236,6 +284,9 @@
               <!--            <option value="volvo">Volvo XC90</option>-->
           </select>
           <button id="Student-faculty-assign-button" type="submit" class="btn btn-secondary">Submit</button>
+          <button id="faculty-assign-cancel-button" class="btn btn-secondary" type="submit">
+              Cancel
+          </button>
       </form>
 
   </div>

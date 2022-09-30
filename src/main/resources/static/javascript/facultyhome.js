@@ -12,7 +12,7 @@ const facultyId = cookieArr[1];
 
 
 
-function handleLogout() {
+async function  handleLogout() {
   let c = document.cookie.split(";");
   console.log(c)
   for (let i in c) {
@@ -47,12 +47,26 @@ const tableHeader = document.getElementById("table-header");
 const genderBtns = document.querySelectorAll(`input[name="gender"]`);
 let routerParameter;
 
-//let loggedFaculty ;
-//console.log(loggedFaculty)
-//search form elements
 const searchBtn = document.getElementById("search-button");
 const firstNameSearch =  document.getElementById("firstname-search");
 
+
+// password change form buttons
+const passwordChangeContainer = document.getElementById("password-container");
+const changePasswordForm = document.getElementById("change-password-form");
+const newPasswordInput = document.getElementById("newPassword");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+const changePasswordBtn = document.getElementById("change-password-button");
+const passwordMessage = document.getElementById("change-password-message");
+
+function changePassword() {
+  console.log("in change password");
+  passwordChangeContainer.classList.remove("hide");
+}
+
+function hidePasswordContainer() {
+passwordChangeContainer.classList.add("hide");
+}
 //get all students where Faculty id = logged faculty id
 async function getStudentList() {
   console.log("faculty id :" + facultyId);
@@ -67,7 +81,7 @@ async function getStudentList() {
 }
 // DISPLAY STUDENT DATA IN TABLE FORMAT
 const createStudentTable = (data) => {
-
+data.sort((a,b)=> (+a.id) - (+b.id));
 tableTitle.innerHTML = `Students List`;
   dataContainer.classList.remove("hide");
   tableHeader.innerHTML = `  <tr>
@@ -162,7 +176,6 @@ console.log("getFacultyByFacultyId")
             .then(data => data)
             .catch(err => console.error(err))
 }
-
 async function updateStudentById(studentId) {
   idForm.classList.remove("hide");
   formContainer.classList.remove("hide");
@@ -170,6 +183,30 @@ async function updateStudentById(studentId) {
   getStudentByStudentId(routerParameter);
 
 }
+const handleChangePassword = async (e) => {
+  e.preventDefault();
+  if(newPasswordInput.value != confirmPasswordInput.value){
+   passwordMessage.innerHTML= "Both password are not same !!"
+  } else {
+    passwordChangeContainer.classList.add("hide")
+    let changedPassword = newPasswordInput.value;
+    console.log("handle Change passwprd : "+ changedPassword)
+    const response = await fetch(`${facultyBaseUrl}/${facultyId}/${changedPassword}`, {
+         method: "PUT",
+         headers: headers,
+       }).catch((err) => console.error(err.message));
+       if (response.status === 200) {
+             alert("Password changed successfully!")
+    }
+        newPasswordInput.value=""
+
+        confirmPasswordInput.value=""
+  }
+
+
+}
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
    formContainer.classList.add("hide");
@@ -202,9 +239,7 @@ const handleSubmit = async (e) => {
     }).catch((err) => console.error(err.message));
     if (response.status === 200) {
          getStudentList();
-
     }
-
 };
 
 const cancelForm = (e)=> {
@@ -218,3 +253,5 @@ searchBtn.addEventListener("click", searchByFirstName);
 submitBtn.addEventListener("click", handleSubmit);
 //document.addEventListener("DOMContentLoaded", getStudentList);
 getStudentList();
+
+changePasswordBtn.addEventListener("click", handleChangePassword);

@@ -36,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
             return  response;
         }
         Optional<Faculty> facultyOptional = facultyRepository.findById(facultyId);
-//        System.out.println("Student Birth date :" + studentDto.getDob());
 
         Student student = new Student(studentDto);
         if(facultyOptional.isPresent()){
@@ -126,7 +125,7 @@ public class StudentServiceImpl implements StudentService {
         return  Optional.empty();
     }
 
-    // delete Student  by Student ID
+    // get Student  by Student ID
 
     @Override
     @Transactional
@@ -170,23 +169,4 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
-//    @Override
-//    @Transactional
-//    public void assignFacultyToStudentId(StudentDto studentDto){
-//        Optional<Student> studentOptional = studentRepository.findById(studentDto.getId());
-//
-//        studentOptional.ifPresent(student -> {
-//            student.setFirstName(studentDto.getFirstName());
-//            student.setLastName(studentDto.getLastName());
-//            student.setDob(studentDto.getDob());
-//
-//
-//            student.setGender(studentDto.getGender());
-//            student.setGrade(studentDto.getGrade());
-//
-//            student.setAddress(studentDto.getAddress());
-//            student.setEmail(studentDto.getEmail());
-//            student.setPhoneNumber(studentDto.getPhoneNumber());
-//            studentRepository.saveAndFlush(student);
-//        });
 }
