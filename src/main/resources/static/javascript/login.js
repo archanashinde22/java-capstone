@@ -28,7 +28,7 @@ const handleLogin = async (evt) =>{
         console.log(responseArr[1])
         if(response.status === 200){
           if(responseArr[0] ==="Username or password incorrect"){
-                              alert(responseArr[0]);
+                  document.getElementById('login-message').innerHTML='<b>Username or password incorrect. Please try again.</b>'
           } else{
                           document.cookie = `userId=${responseArr[2]}`
                           window.location.replace(responseArr[1])

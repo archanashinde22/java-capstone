@@ -50,6 +50,7 @@ const handleRegister = async (evt) =>{
 
       if(responseArr[0] ==="User already exists with given email."  || responseArr[0] ==="User already exists with given username."){
                                   alert(responseArr[0]);
+
               } else{
 
                               window.location.replace(responseArr[1])

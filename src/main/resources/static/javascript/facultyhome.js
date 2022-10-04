@@ -115,6 +115,7 @@ tableTitle.innerHTML = `Students List`;
 };
 
 const populateEditForm = (data) => {
+        console.log(data)
           let dateDB = data.dob.substring(0,10)
     genderBtns.forEach(genderBtn => {
         console.log(genderBtn);
